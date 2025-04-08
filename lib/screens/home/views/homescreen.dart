@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:fintrack/screens/add_expense/views/add_expense.dart';
 import 'package:fintrack/screens/home/Stats/stats.dart';
 import 'package:fintrack/screens/home/views/main_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int index = 0;
+  late Color selectedItem = Colors.greenAccent;
+  Color unselectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +41,32 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.white,
               showUnselectedLabels: false,
               showSelectedLabels: false,
-              items: const [
+              selectedItemColor: Colors.greenAccent,
+              items: [
                 BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.home), label: 'home'),
+                    icon: Icon(
+                      CupertinoIcons.home,
+                      color: index == 0 ? selectedItem : unselectedItem,
+                    ),
+                    label: 'home'),
                 BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.graph_circle_fill),
+                    icon: Icon(
+                      CupertinoIcons.graph_circle_fill,
+                      color: index == 1 ? selectedItem : unselectedItem,
+                    ),
                     label: 'graph')
               ]),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => const AddExpense(),
+              ),
+            );
+          },
           shape: const CircleBorder(),
           child: Container(
               width: 60,

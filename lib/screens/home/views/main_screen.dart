@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:fintrack/data/data.dart';
+//import 'package:fintrack/screens/home/views/signuppage.dart';
+import 'package:fintrack/screens/home/views/transacciones_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -58,9 +60,15 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                    onPressed: () {}, icon: Icon(CupertinoIcons.settings))
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Container()),
+                      );
+                    },
+                    icon: Icon(CupertinoIcons.settings))
               ],
-            ), //BIG ROW COÑO!!!
+            ), //BIG ROW!!!
             const SizedBox(
               height: 20,
             ),
@@ -204,7 +212,12 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => transaccionesPage()));
+                  },
                   child: Text(
                     'Ver todas',
                     style: TextStyle(
@@ -212,7 +225,7 @@ class MainScreen extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             const SizedBox(height: 20),
