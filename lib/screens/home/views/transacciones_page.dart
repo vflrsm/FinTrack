@@ -12,7 +12,7 @@ class transaccionesPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text('Transacciones Page'),
+        child: Text('Transaccions Page'),
       ),
     );
   }

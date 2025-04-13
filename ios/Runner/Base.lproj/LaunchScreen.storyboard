@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="9Vb-b8-itG">
-                                <rect key="frame" x="0.0" y="-11" width="393" height="874"/>
+                                <rect key="frame" x="0.0" y="-11" width="465" height="1104"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="logo_normal" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
@@ -38,7 +38,7 @@
                         </constraints>
                     </view>
                 </viewController>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" id="kdo-fZ-FfC">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="gradient" id="kdo-fZ-FfC">
                     <rect key="frame" x="0.0" y="0.0" width="0.33333333333334281" height="0.33333333333333331"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -48,7 +48,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="0.3333333432674408" height="0.3333333432674408"/>
         <image name="gradient" width="393" height="852"/>
         <image name="logo_normal" width="335" height="344.66665649414062"/>
     </resources>

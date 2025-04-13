@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:fintrack/data/data.dart';
+import 'package:fintrack/screens/home/views/settings_page.dart';
 //import 'package:fintrack/screens/home/views/signuppage.dart';
 import 'package:fintrack/screens/home/views/transacciones_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,7 +64,10 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Container()),
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const SettingPage(),
+                        ),
                       );
                     },
                     icon: Icon(CupertinoIcons.settings))
