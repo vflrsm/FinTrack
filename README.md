@@ -14,7 +14,7 @@ FinTrack is a personal finance tracking application built using Flutter. It help
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/valfrlsm/fintrack.git
+    git clone https://github.com/vflrsm/fintrack.git
     ```
 2. Navigate to the project directory:
     ```bash
