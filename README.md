@@ -1,39 +1,63 @@
-# fintrack
+# FinTrack
 
-A new Flutter project.
+FinTrack is a personal finance tracking application built using Flutter. It helps users manage their expenses, track income, and gain insights into their financial habits.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Add and categorize income and expenses.
+- View detailed financial reports and charts.
+- Set monthly budgets and track progress.
+- Secure data storage with local or cloud options.
+- Cross-platform support (iOS, Android).
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/valfrlsm/fintrack.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd fintrack
+    ```
+3. Install dependencies:
+    ```bash
+    flutter pub get
+    ```
+4. Run the app:
+    ```bash
+    flutter run
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Requirements
 
-- fl charter
-- cupertino icons
+- Flutter SDK version 3.x or higher.
+- Android Studio or Xcode for emulators.
+- A connected device or simulator.
 
-## guía de la arquitectura: 
+## Contributing
 
-### Control de Gastos Personales
+Contributions are welcome! Please follow these steps:
 
-*Descripción:* Aplicación para registrar ingresos y gastos mensuales.*
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-name
+    ```
+3. Commit your changes:
+    ```bash
+    git commit -m "Add feature-name"
+    ```
+4. Push to your branch:
+    ```bash
+    git push origin feature-name
+    ```
+5. Open a pull request.
 
-### Arquitectura
+## License
 
-*main.dart* — corre la función MyApp (principal, donde se renderiza toda la aplicación)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-*app.dart — donde se coloca la autenticación (en el futuro), repository provider, autenticacion blocs*
+## Contact
 
-*app_view* — se renderiza los elementos del navigatorbottom
-
-*homescreen* — centro de distribución (el mismo nav para todos)
-
-*main_screen* - trabaja con los detalles del incio, la tarjeta, etc…
-
-*data.dart* — mockup data, se cambia luego con los datos de la base de datos
+For questions or feedback, please contact [valleryfloresmontero@gmail.com].
