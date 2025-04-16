@@ -69,23 +69,44 @@ class _AddExpenseState extends State<AddExpense> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width *
                       0.7, // Ancho del campo de texto
-                  child: TextFormField(
-                    controller: expenseController,
-                    textAlign:
-                        TextAlign.start, // Alineación horizontal del texto
-                    textAlignVertical: TextAlignVertical
-                        .center, // Alineación vertical del texto
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(
-                        CupertinoIcons.money_dollar,
-                        color: Colors.grey,
+                  child: Stack(
+                    children: [
+                      Stack(
+                        children: [
+                          TextFormField(
+                            controller: expenseController,
+                            textAlign: TextAlign.center, // Centra el texto
+                            keyboardType: TextInputType
+                                .number, // Asegura que sea un campo numérico
+                            style: TextStyle(
+                                fontSize:
+                                    50), // Asegura que el texto del monto esté grande
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixText:
+                                  '\$', // El símbolo de dinero con escape
+                              prefixStyle: TextStyle(
+                                color: Colors.grey
+                                    .shade600, // Estilo del símbolo del dólar
+                                fontSize:
+                                    20, // Asegura que el símbolo esté alineado con el número
+                              ),
+                              hintText: '0', // El texto de sugerencia
+                              hintStyle: TextStyle(
+                                fontSize:
+                                    50, // Tamaño grande para el placeholder
+                                color: Colors.grey.shade600, // Color gris claro
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none),
-                    ),
+                    ],
                   ),
                 ),
               ),
@@ -358,6 +379,26 @@ class _AddExpenseState extends State<AddExpense> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                maxLines: 1,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: Icon(
+                    CupertinoIcons.pencil,
+                    color: Colors.grey,
+                  ),
+                  label: Text(
+                    'Notas',
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
               SizedBox(height: 16),
