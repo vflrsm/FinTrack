@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class transaccionesPage extends StatelessWidget {
-  const transaccionesPage({super.key});
+class TransaccionesPage extends StatefulWidget {
+  const TransaccionesPage({super.key});
 
+  @override
+  State<TransaccionesPage> createState() => TransaccionesPageState();
+}
+
+class TransaccionesPageState extends State<TransaccionesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +16,10 @@ class transaccionesPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text('Transaccions Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [],
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 // import 'package:fintrack/screens/home/Stats/chart.dart';
 import 'package:fintrack/screens/home/Stats/chart.dart';
+import 'package:fintrack/screens/home/views/homescreen.dart';
 import 'package:flutter/material.dart';
 
 class StatsScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class StatsScreen extends StatefulWidget {
 }
 
 class _StatsScreenState extends State<StatsScreen> {
+  bool showBottomNav =
+      true; // Estado para mostrar/ocultar el BottomNavigationBar
   String selected = 'Expenses'; // Estado para el toggle
 
   @override
@@ -25,8 +28,41 @@ class _StatsScreenState extends State<StatsScreen> {
               width: 20,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // Botón de atrás + título
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        color: Colors.grey.shade600,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const Text(
+                      'Transacciones',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Botón de filtro
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
@@ -43,25 +79,14 @@ class _StatsScreenState extends State<StatsScreen> {
                           end: DateTime.now(),
                         ),
                       );
-
                       if (picked != null) {
-                        // Use picked.start and picked.end to filter your data
                         // ignore: avoid_print
                         print(
                             'Selected range: ${picked.start} - ${picked.end}');
-                        // Apply filtering logic to your chart or transaction list
                       }
                     },
-                    icon: const Icon(Icons.filter_list),
+                    icon: const Icon(Icons.filter_list_outlined),
                     color: Colors.grey.shade600,
-                  ),
-                ),
-                SizedBox(height: 16, width: 12),
-                Text(
-                  'Transactions',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
                   ),
                 ),
               ],
@@ -74,37 +99,51 @@ class _StatsScreenState extends State<StatsScreen> {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Row(
-                children: ['Income', 'Expenses'].map((type) {
-                  final isSelected = selected == type;
-                  return Expanded(
-                    child: GestureDetector(
-                      onTap: () => setState(() => selected = type),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        decoration: BoxDecoration(
-                          gradient: isSelected
-                              ? LinearGradient(colors: [
-                                  Theme.of(context).colorScheme.primary,
-                                  Theme.of(context).colorScheme.secondary,
-                                  Theme.of(context).colorScheme.tertiary,
-                                ])
-                              : null,
-                          color: isSelected ? null : Colors.transparent,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          type,
-                          style: TextStyle(
-                            color: isSelected ? Colors.white : Colors.grey,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+              child: Stack(
+                children: [
+                  AnimatedAlign(
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    alignment: selected == 'Income'
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5 -
+                          20, // ajusta al tamaño
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          Theme.of(context).colorScheme.primary,
+                          Theme.of(context).colorScheme.secondary,
+                          Theme.of(context).colorScheme.tertiary,
+                        ]),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
-                  );
-                }).toList(),
+                  ),
+                  Row(
+                    children: ['Income', 'Expenses'].map((type) {
+                      final isSelected = selected == type;
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () => setState(() => selected = type),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: AnimatedDefaultTextStyle(
+                              duration: Duration(milliseconds: 300),
+                              style: TextStyle(
+                                color: isSelected
+                                    ? Colors.white
+                                    : Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              child: Text(type),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 20),

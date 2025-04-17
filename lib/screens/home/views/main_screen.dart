@@ -220,7 +220,7 @@ class MainScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => transaccionesPage()));
+                            builder: (context) => TransaccionesPage()));
                   },
                   child: Text(
                     'Ver todas',
