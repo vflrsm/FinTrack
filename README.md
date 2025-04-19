@@ -1,3 +1,5 @@
+![cover](./assets/cover.png)
+
 # FinTrack
 
 FinTrack is a personal finance tracking application built using Flutter. It helps users manage their expenses, track income, and gain insights into their financial habits.
