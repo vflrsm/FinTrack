@@ -35,6 +35,17 @@ class _AddExpenseState extends State<AddExpense> {
   void initState() {
     dateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
     super.initState();
+
+    super.initState();
+    expenseController.addListener(() {
+      setState(() {}); // Esto forzará el redibujo del overlay
+    });
+  }
+
+  @override
+  void dispose() {
+    expenseController.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,47 +75,85 @@ class _AddExpenseState extends State<AddExpense> {
                 height: 32,
               ),
               Align(
-                alignment:
-                    Alignment.center, // Centra el `SizedBox` horizontalmente
+                alignment: Alignment.center,
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width *
-                      0.7, // Ancho del campo de texto
+                  width: MediaQuery.of(context).size.width * 0.7,
                   child: Stack(
                     children: [
-                      Stack(
-                        children: [
-                          TextFormField(
-                            controller: expenseController,
-                            textAlign: TextAlign.center, // Centra el texto
-                            keyboardType: TextInputType
-                                .number, // Asegura que sea un campo numérico
-                            style: TextStyle(
-                                fontSize:
-                                    50), // Asegura que el texto del monto esté grande
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixText:
-                                  '\$', // El símbolo de dinero con escape
-                              prefixStyle: TextStyle(
-                                color: Colors.grey
-                                    .shade600, // Estilo del símbolo del dólar
-                                fontSize:
-                                    20, // Asegura que el símbolo esté alineado con el número
-                              ),
-                              hintText: '0', // El texto de sugerencia
-                              hintStyle: TextStyle(
-                                fontSize:
-                                    50, // Tamaño grande para el placeholder
-                                color: Colors.grey.shade600, // Color gris claro
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide.none,
-                              ),
+                      // Campo de texto transparente con padding suficiente
+                      TextFormField(
+                        controller: expenseController,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        style: const TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.w600,
+                          color: Colors
+                              .transparent, // Oculta texto real para superponer
+                        ),
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+
+                      // Superposición visual
+                      Positioned.fill(
+                        child: IgnorePointer(
+                          child: Center(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '\$',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.grey.shade700,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                expenseController.text.isEmpty
+                                    ? ShaderMask(
+                                        shaderCallback: (bounds) =>
+                                            const LinearGradient(
+                                          colors: [
+                                            Color(0xFF6CE9A5),
+                                            Color(0xFF32B3E2),
+                                            Color(0xFF9D7BFF),
+                                          ],
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                        ).createShader(bounds),
+                                        child: const Text(
+                                          '0',
+                                          style: TextStyle(
+                                            fontSize: 50,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors
+                                                .white, // necesario para ShaderMask
+                                          ),
+                                        ),
+                                      )
+                                    : Text(
+                                        expenseController.text,
+                                        style: const TextStyle(
+                                          fontSize: 50,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                              ],
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
